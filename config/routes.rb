@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :constituencies
+
   resources :voivodeships
 
   devise_for :users
