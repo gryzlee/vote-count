@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Comittees</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comittees.each do |comittee| %>
+      <tr>
+        <td><%= comittee.name %></td>
+        <td><%= comittee.voivodship.name %></td>
+
+        <td><%= link_to 'Show', comittee %></td>
+        <td><%= link_to 'Edit', edit_comittee_path(comittee) %></td>
+        <td><%= link_to 'Destroy', comittee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<br>
+
+<%= link_to 'New Comittee', new_comittee_path %>

@@ -25,7 +25,7 @@ class ConstituenciesController < ApplicationController
   # POST /constituencies.json
   def create
     @constituency = Constituency.new(constituency_params)
-
+    
     respond_to do |format|
       if @constituency.save
         format.html { redirect_to @constituency, notice: 'Constituency was successfully created.' }

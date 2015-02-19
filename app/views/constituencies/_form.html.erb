@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :voivodeship_id %><br>
-    <%= f.text_field :voivodeship_id %>
+    <%= f.collection_select(:voivodeship_id, Voivodeship.all, :id, :name) %>
   </div>
   <div class="actions">
     <%= f.submit %>

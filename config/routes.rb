@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :comittees
+
   resources :constituencies
 
   resources :voivodeships
