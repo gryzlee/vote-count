@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  comittee_id: 1
+  constituency_id: 1
+  votes: 1
+
+two:
+  comittee_id: 1
+  constituency_id: 1
+  votes: 1

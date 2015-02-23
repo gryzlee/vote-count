@@ -1,12 +1,12 @@
 class CreateVoivodeshipsComitteesJoin < ActiveRecord::Migration
   def self.up
-    create_table 'voivodeships_comittees', :id => false do |t|
-    	t.column :voivodeship_id, :integer
-    	t.column :comittee_id, :integer
+    create_table 'comittees_voivodeships', :id => false do |t|
+    	t.belongs_to :comittee, index: true
+    	t.belongs_to :voivodeship, index: true
     end
   end
 
   def self.down
-  	drop_table 'voivodeships_comittees'
+  	drop_table 'comittees_voivodeships'
   end
 end

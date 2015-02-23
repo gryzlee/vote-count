@@ -15,8 +15,12 @@
       <tr>
         <td><%= voivodeship.name %></td>
         <td><%= link_to 'Show', voivodeship %></td>
-        <td><%= link_to 'Edit', edit_voivodeship_path(voivodeship) %></td>
-        <td><%= link_to 'Destroy', voivodeship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if can? :update, voivodeship %>
+          <td><%= link_to 'Edit', edit_voivodeship_path(voivodeship) %></td>
+        <% end %>
+        <% if can? :destroy, voivodeship %>
+          <td><%= link_to 'Destroy', voivodeship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

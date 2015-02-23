@@ -1,5 +1,6 @@
 class VoivodeshipsController < ApplicationController
   before_action :set_voivodeship, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
 
   # GET /voivodeships
   # GET /voivodeships.json
@@ -10,6 +11,16 @@ class VoivodeshipsController < ApplicationController
   # GET /voivodeships/1
   # GET /voivodeships/1.json
   def show
+    if @voivodeship.constituencies.length == 0
+      @assosciated_constituencies = "None"
+    else 
+      @assosciated_constituencies = @voivodeship.constituencies
+    end
+    if @voivodeship.comittees.length == 0
+      @assosciated_comittees = "None"
+    else 
+      @assosciated_comittees = @voivodeship.comittees
+    end
   end
 
   # GET /voivodeships/new
@@ -69,6 +80,6 @@ class VoivodeshipsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def voivodeship_params
-      params.require(:voivodeship).permit(:name)
+      params.require(:voivodeship).permit(:name, :seats, :comittee_ids => [])
     end
 end

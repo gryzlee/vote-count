@@ -11,13 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150219193258) do
+ActiveRecord::Schema.define(version: 20150222233351) do
 
   create_table "comittees", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
+
+  create_table "comittees_voivodeships", id: false, force: :cascade do |t|
+    t.integer "comittee_id"
+    t.integer "voivodeship_id"
+  end
+
+  add_index "comittees_voivodeships", ["comittee_id"], name: "index_comittees_voivodeships_on_comittee_id"
+  add_index "comittees_voivodeships", ["voivodeship_id"], name: "index_comittees_voivodeships_on_voivodeship_id"
 
   create_table "constituencies", force: :cascade do |t|
     t.string   "name"
@@ -51,6 +63,7 @@ ActiveRecord::Schema.define(version: 20150219193258) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.integer  "constituency_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
@@ -61,11 +74,16 @@ ActiveRecord::Schema.define(version: 20150219193258) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "seats"
   end
 
-  create_table "voivodeships_comittees", id: false, force: :cascade do |t|
-    t.integer "voivodeship_id"
+  create_table "votes", force: :cascade do |t|
     t.integer "comittee_id"
+    t.integer "constituency_id"
+    t.integer "quantity"
   end
+
+  add_index "votes", ["comittee_id"], name: "index_votes_on_comittee_id"
+  add_index "votes", ["constituency_id"], name: "index_votes_on_constituency_id"
 
 end

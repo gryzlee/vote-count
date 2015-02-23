@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+  resources :votes
+
   resources :comittees
 
-  resources :constituencies
+  resources :constituencies do
+    get 'votes', on: :member
+  end
 
   resources :voivodeships
 
@@ -17,7 +21,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
 authenticated :user do
-  root :to => 'users#index', as: :authenticated_root
+  root :to => 'voivodeships#index', as: :authenticated_root
 end
 root :to => 'welcome#index'
 

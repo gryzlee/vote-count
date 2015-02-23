@@ -23,6 +23,19 @@
     <%= f.label :voivodeship_id %><br>
     <%= f.collection_select(:voivodeship_id, Voivodeship.all, :id, :name) %>
   </div>
+  <% if current_user.constituency_id == @constituency.id and !@constituency.voivodeship.blank? %>
+    <% @constituency.voivodeship.comittees.each do |comittee| %>
+      <%= f.fields_for :votes do |v| %>
+        <%= v.label comittee.name %>
+        <%= v.hidden_field :comittee_id, :value => comittee.id %>
+        <%= v.hidden_field :constituency_id, :value => @constituency.id %>
+        <%= comittee.id %>
+        <%= @constituency.id %>
+        <%= v.number_field :quantity %>
+
+      <% end %>
+    <% end %>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

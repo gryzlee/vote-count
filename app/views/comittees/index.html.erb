@@ -14,11 +14,14 @@
     <% @comittees.each do |comittee| %>
       <tr>
         <td><%= comittee.name %></td>
-        <td><%= comittee.voivodship.name %></td>
 
         <td><%= link_to 'Show', comittee %></td>
-        <td><%= link_to 'Edit', edit_comittee_path(comittee) %></td>
-        <td><%= link_to 'Destroy', comittee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if can? :update, comittee %>
+          <td><%= link_to 'Edit', edit_comittee_path(comittee) %></td>
+        <% end %>
+        <% if can? :destroy, comittee %>
+          <td><%= link_to 'Destroy', comittee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

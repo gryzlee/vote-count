@@ -15,6 +15,13 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+  <div class="field">
+    <%= f.label :seats %><br>
+    <%= f.number_field :seats %>
+  </div>
+    <div class="field">
+  <%= f.collection_select :comittee_ids, Comittee.all, :id, :name, {}, {:multiple => true} %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

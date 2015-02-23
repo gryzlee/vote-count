@@ -1,5 +1,6 @@
 class ComitteesController < ApplicationController
   before_action :set_comittee, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
 
   # GET /comittees
   # GET /comittees.json
@@ -10,6 +11,7 @@ class ComitteesController < ApplicationController
   # GET /comittees/1
   # GET /comittees/1.json
   def show
+    @assosciated_voivodeships = @comittee.voivodeships.map(&:name).join(", ")
   end
 
   # GET /comittees/new
@@ -25,7 +27,7 @@ class ComitteesController < ApplicationController
   # POST /comittees.json
   def create
     @comittee = Comittee.new(comittee_params)
-
+    @voivodeship = Voivodeship.all
     respond_to do |format|
       if @comittee.save
         format.html { redirect_to @comittee, notice: 'Comittee was successfully created.' }
@@ -69,6 +71,6 @@ class ComitteesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comittee_params
-      params.require(:comittee).permit(:name, :voivodeship_ids)
+      params.require(:comittee).permit(:name, :avatar, :comittee_id, :constituency_id, :votes_attributes, :voivodeship_ids => [])
     end
 end

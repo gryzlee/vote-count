@@ -19,8 +19,13 @@
         <td><%= constituency.voters %></td>
         <td><%= constituency.voivodeship.name %></td>
         <td><%= link_to 'Show', constituency %></td>
-        <td><%= link_to 'Edit', edit_constituency_path(constituency) %></td>
-        <td><%= link_to 'Destroy', constituency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if can? :update, constituency %>
+          <td><%= link_to 'Edit', edit_constituency_path(constituency) %></td>
+          <td><%= link_to 'Add Votes', new_vote_path %></td>
+        <% end %>
+        <% if can? :destroy, constituency %>
+          <td><%= link_to 'Destroy', constituency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

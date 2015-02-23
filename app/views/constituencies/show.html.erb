@@ -12,7 +12,7 @@
 
 <p>
   <strong>Voivodeship:</strong>
-  <%= @constituency.voivodeship.name %>
+  <%= link_to @constituency.voivodeship.name, @constituency.voivodeship %>
 </p>
 
 <%= link_to 'Edit', edit_constituency_path(@constituency) %> |

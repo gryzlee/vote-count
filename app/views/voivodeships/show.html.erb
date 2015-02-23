@@ -4,6 +4,28 @@
   <strong>Name:</strong>
   <%= @voivodeship.name %>
 </p>
+<p>
+<p>
+  <strong>Seats:</strong>
+  <%= @voivodeship.seats %>
+</p>
+<p>
+  <strong>Constituencies:</strong>
+  <% if @assosciated_constituencies != "None" %>
+    <% @assosciated_constituencies.each do |c| %>
+    	<li><%= link_to c.name, c %></li>
+    <% end %>
+  <% end %>
+</p>
+<p>
+  <strong>Comittees:</strong>
+  <% if @assosciated_comittees != "None" %>
 
-<%= link_to 'Edit', edit_voivodeship_path(@voivodeship) %> |
+    <% @assosciated_comittees.each do |c| %>
+    	<li><%= link_to c.name, c %></li>
+    <% end %>
+
+  <% end %>
+</p>
+<%= link_to 'Edit', edit_voivodeship_path(@voivodeship) %>
 <%= link_to 'Back', voivodeships_path %>

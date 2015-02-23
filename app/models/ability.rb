@@ -4,7 +4,11 @@ class Ability
   def initialize(user)
     if user.admin?
       can :manage, :all
-    else
+    elsif user.superuser?
+      can :read, :all
+      can :update, Constituency, :id => user.constituency_id
+      can :manage, Vote
+    elsif user.regular?
       can :read, :all
     end
     # Define abilities for the passed in user here. For example:

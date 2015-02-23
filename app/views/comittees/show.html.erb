@@ -4,6 +4,13 @@
   <strong>Name:</strong>
   <%= @comittee.name %>
 </p>
+<p>
+  <strong>Voivodeships:</strong>
+  <%= @assosciated_voivodeships %>
+</p>
+
+<% image_tag @comittee.avatar.url %>
+<%= image_tag @comittee.avatar.url(:thumb) %>
 
 <%= link_to 'Edit', edit_comittee_path(@comittee) %> |
 <%= link_to 'Back', comittees_path %>
