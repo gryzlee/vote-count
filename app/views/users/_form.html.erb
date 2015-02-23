@@ -20,6 +20,10 @@
     <%= collection_select(:user, :role_id, Role.all, :id, :name, {prompt: true}) %>
   </div>
   <div class="field">
+    <%= f.label :constituency_id %><br>
+    <%= f.collection_select :constituency_id, Constituency.all, :id, :name, {}, {:multiple => false} %>
+  </div>
+  <div class="field">
     <%= f.label :email %><br>
     <%= f.text_field :email %>
   </div>

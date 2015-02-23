@@ -2,7 +2,7 @@
 
 <h1>Listing Constituencies</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -21,7 +21,6 @@
         <td><%= link_to 'Show', constituency %></td>
         <% if can? :update, constituency %>
           <td><%= link_to 'Edit', edit_constituency_path(constituency) %></td>
-          <td><%= link_to 'Add Votes', new_vote_path %></td>
         <% end %>
         <% if can? :destroy, constituency %>
           <td><%= link_to 'Destroy', constituency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -32,5 +31,6 @@
 </table>
 
 <br>
-
-<%= link_to 'New Constituency', new_constituency_path %>
+<% if can? :create, @constituencies %>
+  <%= link_to 'New Constituency', new_constituency_path %>
+<% end %>

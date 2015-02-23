@@ -2,7 +2,7 @@
 
 <h1>Listing Users</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -27,5 +27,6 @@
 </table>
 
 <br>
-
-<%= link_to 'New User', new_user_path %>
+<% if can? :create, @users %>
+  <%= link_to 'New User', new_user_path %>
+<% end %>

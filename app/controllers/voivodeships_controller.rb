@@ -15,12 +15,16 @@ class VoivodeshipsController < ApplicationController
       @assosciated_constituencies = "None"
     else 
       @assosciated_constituencies = @voivodeship.constituencies
+      @con_ids = @assosciated_constituencies.pluck(:id)
     end
     if @voivodeship.comittees.length == 0
       @assosciated_comittees = "None"
     else 
       @assosciated_comittees = @voivodeship.comittees
+
     end
+
+    
   end
 
   # GET /voivodeships/new

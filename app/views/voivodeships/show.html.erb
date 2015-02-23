@@ -22,10 +22,11 @@
   <% if @assosciated_comittees != "None" %>
 
     <% @assosciated_comittees.each do |c| %>
-    	<li><%= link_to c.name, c %></li>
+    	<li><%= link_to c.name, c %> - <%= c.votes.where(:constituency_id => (@con_ids)).sum(:quantity) %> votes</li>
     <% end %>
 
   <% end %>
 </p>
+
 <%= link_to 'Edit', edit_voivodeship_path(@voivodeship) %>
 <%= link_to 'Back', voivodeships_path %>

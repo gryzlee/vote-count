@@ -2,7 +2,7 @@
 /* universal */
 
 body {
-  padding-top: 180px;
+  padding-top: 120px;
 }
 
 section {
@@ -19,3 +19,7 @@ textarea {
     margin-bottom: 10px;
   }
 }
+
+.navbar-inverse .navbar-nav > li > a { color: #DDD!important; }
+.sign,
+.sign:visited { color: #FFF;}
